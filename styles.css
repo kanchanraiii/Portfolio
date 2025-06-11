@@ -1,0 +1,264 @@
+:root {
+  --primary-bg: #293042;
+  --secondary-bg: #171c24;
+  --accent-color: #70a6f2;
+  --text-color: #e2e8f0;
+  --heading-color: #c7d2fe;
+}
+
+html, body {
+  overflow-x: hidden;
+  height: 100%;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
+  scroll-behavior: smooth;
+  background-color: #080d17;
+}
+
+main::-webkit-scrollbar {
+  display: none;
+}
+
+main {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#particleCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  pointer-events: none;
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes glowBorder {
+  0% { box-shadow: 0 0 0px var(--accent-color); }
+  50% { box-shadow: 0 0 15px var(--accent-color); }
+  100% { box-shadow: 0 0 0px var(--accent-color); }
+}
+
+@keyframes cardEntryFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes subtlePulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.01); }
+  100% { transform: scale(1); }
+}
+
+.animate-fade-in-scale { animation: fadeInScale 1s ease-out forwards; }
+.animate-slide-in-left { animation: slideInLeft 0.8s ease-out forwards; }
+.animate-glow-border { animation: glowBorder 2s infinite alternate; }
+.animate-subtle-pulse { animation: subtlePulse 3s ease-in-out infinite; }
+
+.delay-0\.1s { animation-delay: 0.1s; }
+.delay-0\.2s { animation-delay: 0.2s; }
+.delay-0\.3s { animation-delay: 0.3s; }
+.delay-0\.4s { animation-delay: 0.4s; }
+.delay-0\.5s { animation-delay: 0.5s; }
+.delay-0\.6s { animation-delay: 0.6s; }
+.delay-0\.7s { animation-delay: 0.7s; }
+.delay-0\.8s { animation-delay: 0.8s; }
+.delay-1s { animation-delay: 1s; }
+.delay-1\.5s { animation-delay: 1.5s; }
+.delay-2s { animation-delay: 2s; }
+.delay-2\.5s { animation-delay: 2.5s; }
+.delay-3s { animation-delay: 3s; }
+.delay-3\.5s { animation-delay: 3.5s; }
+.delay-4s { animation-delay: 4s; }
+.delay-4\.5s { animation-delay: 4.5s; }
+.delay-5s { animation-delay: 5s; }
+.delay-5\.5s { animation-delay: 5.5s; }
+.delay-6s { animation-delay: 6s; }
+
+.section-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.section-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.glass-card {
+  background-color: rgba(21, 28, 40, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(71, 94, 125, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.card-hover-effect {
+  transition: transform 0.4s ease-out, box-shadow 0.4s ease-out, background-color 0.3s ease;
+}
+.card-hover-effect:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(25, 38, 56, 0.4);
+  background-color: rgba(29, 37, 54, 0.7);
+}
+
+.project-card-item.card-hover-effect:hover {
+  transform: translateY(-10px) scale(1.03) rotateZ(2deg);
+}
+
+.button-hover-effect {
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+.button-hover-effect:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(99, 163, 241, 0.4);
+}
+
+.typing-text {
+  border-right: 2px solid var(--accent-color);
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 3s steps(30, end) forwards, blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--accent-color); }
+}
+
+.card-item-animated {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.section-reveal.is-visible .card-item-animated {
+  animation: cardEntryFadeIn 0.6s ease-out forwards;
+}
+
+.section-reveal.is-visible ul > .card-item-animated:nth-child(1) { animation-delay: 0.1s; }
+.section-reveal.is-visible ul > .card-item-animated:nth-child(2) { animation-delay: 0.2s; }
+.section-reveal.is-visible ul > .card-item-animated:nth-child(3) { animation-delay: 0.3s; }
+.section-reveal.is-visible ul > .card-item-animated:nth-child(4) { animation-delay: 0.4s; }
+.section-reveal.is-visible ul > .card-item-animated:nth-child(5) { animation-delay: 0.5s; }
+
+.section-reveal.is-visible .grid > .card-item-animated:nth-child(1) { animation-delay: 0.1s; }
+.section-reveal.is-visible .grid > .card-item-animated:nth-child(2) { animation-delay: 0.2s; }
+.section-reveal.is-visible .grid > .card-item-animated:nth-child(3) { animation-delay: 0.3s; }
+.section-reveal.is-visible .grid > .card-item-animated:nth-child(4) { animation-delay: 0.4s; }
+.section-reveal.is-visible .grid > .card-item-animated:nth-child(5) { animation-delay: 0.5s; }
+.section-reveal.is-visible .grid > .card-item-animated:nth-child(6) { animation-delay: 0.6s; }
+.section-reveal.is-visible .grid > .card-item-animated:nth-child(7) { animation-delay: 0.7s; }
+.section-reveal.is-visible .grid > .card-item-animated:nth-child(8) { animation-delay: 0.8s; }
+.section-reveal.is-visible .grid > .card-item-animated:nth-child(9) { animation-delay: 0.9s; }
+.section-reveal.is-visible .grid > .card-item-animated:nth-child(10) { animation-delay: 1.0s; }
+.section-reveal.is-visible .grid > .card-item-animated:nth-child(11) { animation-delay: 1.1s; }
+.section-reveal.is-visible .grid > .card-item-animated:nth-child(12) { animation-delay: 1.2s; }
+.section-reveal.is-visible .grid > .card-item-animated:nth-child(13) { animation-delay: 1.2s; }
+.section-reveal.is-visible .grid > .card-item-animated:nth-child(14) { animation-delay: 1.2s; }
+.section-reveal.is-visible .grid > .card-item-animated:nth-child(15) { animation-delay: 1.2s; }
+.section-reveal.is-visible .grid > .card-item-animated:nth-child(16) { animation-delay: 1.2s; }
+.section-reveal.is-visible .grid > .card-item-animated:nth-child(17) { animation-delay: 1.2s; }
+.section-reveal.is-visible .grid > .card-item-animated:nth-child(18) { animation-delay: 1.2s; }
+
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.8rem;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: var(--accent-color);
+  border-radius: 2px;
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 2.5rem;
+  padding-left: 1.5rem;
+  cursor: pointer;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 0.4rem;
+  top: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  border: 3px solid var(--primary-bg);
+  z-index: 10;
+}
+
+@keyframes dotPulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.timeline-item::before {
+  animation: dotPulse 2s infinite ease-in-out alternate;
+}
+
+.section-reveal.is-visible .timeline-item.card-item-animated {
+  animation: cardEntryFadeIn 0.8s ease-out forwards;
+}
+.section-reveal.is-visible .timeline-item.card-item-animated:nth-child(1) { animation-delay: 0.1s; }
+.section-reveal.is-visible .timeline-item.card-item-animated:nth-child(2) { animation-delay: 0.3s; }
+.section-reveal.is-visible .timeline-item.card-item-animated:nth-child(3) { animation-delay: 0.5s; }
+
+.expandable-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out;
+  padding-top: 0;
+}
+
+.expandable-content.expanded {
+  max-height: 500px;
+  padding-top: 0.5rem;
+}
+
+.expand-toggle-icon {
+  transition: transform 0.3s ease-in-out;
+}
+.expanded .expand-toggle-icon {
+  transform: rotate(90deg);
+}
