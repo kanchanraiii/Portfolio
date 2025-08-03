@@ -18,8 +18,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="antialiased">
@@ -145,13 +145,14 @@
                         <p class="text-slate-300 text-lg md:text-xl">I am seeking internship opportunities to apply my skills, gain hands-on industry experience, and learn from real-world projects.</p>
                     </div>
                     <div class="glass-card bento-item-large p-8 rounded-2xl">
-                        <h3 class="text-3xl md:text-4xl font-bold text-primary mb-6">Techstack</h3>
+                        <h3 class="text-3xl md:text-4xl font-bold text-primary mb-6">Technologies & Skills</h3>
                         <div class="flex flex-wrap gap-4">
                             <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">Python</span>
                             <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">C/C++</span>
                             <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">Java</span>
                             <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">Tailwind CSS</span>
                             <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">HTML5 & CSS3</span>
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full" >UI/UX</span>
                             <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">MongoDB</span>
                             <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">SQL</span>
                             <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">Django</span>
@@ -185,7 +186,7 @@
                     <!-- Project 1 -->
                     <div class="glass-card rounded-2xl p-0 flex-col justify-start">
                         <div class="aspect-video overflow-hidden rounded-t-2xl">
-                            <img src="projects/circuit.png" alt="Project A" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                            <img src="projects/circuit.png" alt="Project A" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
                         </div>
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="text-2xl md:text-2xl font-bold text-primary mb-2">Face Detector & Notifier</h3>
@@ -207,7 +208,7 @@
                     <!-- Project 2 -->
                     <div class="glass-card rounded-2xl p-0 flex-col justify-start">
                         <div class="aspect-video overflow-hidden rounded-t-2xl">
-                            <img src="projects/sentiment.jpg" alt="Project B" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                            <img src="projects/sentiment.jpg" alt="Project B" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
                         </div>
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="text-2xl md:text-2xl font-bold text-primary mb-2">Fine Tuning DistilBERT for Sentiment Analysis</h3>
@@ -228,7 +229,7 @@
                     <!-- Project 3 -->
                     <div class="glass-card rounded-2xl p-0 flex-col justify-start">
                         <div class="aspect-video overflow-hidden rounded-t-2xl">
-                            <img src="projects/krishi-mitr.png" alt="Project C" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                            <img src="projects/krishi-mitr.png" alt="Project C" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
                         </div>
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="text-2xl md:text-2xl font-bold text-primary mb-2">Krishi-Mitr</h3>
@@ -251,7 +252,7 @@
                     <!-- Project 4 -->
                     <div class="glass-card rounded-2xl p-0 flex-col justify-start">
                         <div class="aspect-video overflow-hidden rounded-t-2xl">
-                            <img src="projects/aqi.jpg" alt="Project D" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                            <img src="projects/aqi.jpg" alt="Project D" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
                         </div>
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="text-2xl md:text-2xl font-bold text-primary mb-2">AQI Predictor</h3>
