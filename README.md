@@ -1,2 +1,2 @@
-Visit Site - https://kanchanraiii.xyz
-Deployed with - Firebase hosting
+- Visit Site - https://kanchanraiii.xyz
+- Deployed with - Firebase hosting
