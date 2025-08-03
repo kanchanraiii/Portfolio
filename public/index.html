@@ -5,390 +5,301 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kanchan Rai</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="projects/cat.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="overflow-x-hidden">
-    <canvas id="particleCanvas"></canvas>
-    <main class="h-screen overflow-y-scroll snap-y snap-mandatory">
-        <section id="home" class="relative min-h-screen flex items-center justify-center text-center px-6 overflow-hidden snap-start">
-            <div class="z-10 relative">
-                <p class="text-xl md:text-4xl text-heading-color mb-6 animate-fade-in-scale delay-0.1s">Hello, I'm</p>
-                <h1 class="text-5xl md:text-8xl font-extrabold text-white leading-tight mb-4 animate-fade-in-scale delay-0.3s">
-                    <span class="inline-block bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 animate-subtle-pulse">Kanchan Rai</span>
-                </h1>
-                <p class="text-2xl md:text-4xl text-gray-300 mb-10 font-light typing-text animate-fade-in-scale delay-0.6s">
-                    Aspiring Software Developer 
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 animate-fade-in-scale delay-0.8s">
-                    <a href="#projects" class="button-hover-effect inline-flex items-center justify-center bg-accent-color hover:bg-indigo-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out">
-                        <i class="fas fa-eye mr-2"></i> Explore My Projects
-                    </a>
-                    <a href="#contact" class="button-hover-effect inline-flex items-center justify-center bg-transparent border-2 border-accent-color hover:border-indigo-600 text-accent-color hover:text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out">
-                        <i class="fas fa-handshake mr-2"></i> Get in Touch
-                    </a>
-                </div>
+<body class="antialiased">
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo"></div>
+            <div class="loading-spinner"></div>
+            <div class="loading-text" id="loading-text">Preparing something awesome...</div>
+            <div class="loading-progress">
+                <div class="loading-progress-bar"></div>
             </div>
-            <div class="fixed right-8 top-1/2 -translate-y-1/2 z-40 flex flex-col space-y-4 text-3xl glass-card bg-slate-700/80 p-4 rounded-full">
-                <a href="https://linkedin.com/in/kanchanraiii" target="_blank" class="text-gray-200 hover:text-accent-color transition duration-300 transform hover:scale-125" aria-label="LinkedIn Profile">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://github.com/kanchanraiii" target="_blank" class="text-gray-200 hover:text-accent-color transition duration-300 transform hover:scale-125" aria-label="GitHub Profile">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="mailto:kanchanrai2307@gmail.com" class="text-gray-200 hover:text-accent-color transition duration-300 transform hover:scale-125" aria-label="Send Email">
-                    <i class="fas fa-envelope"></i>
-                </a>
-                <a href="https://twitter.com/kanchanraiii" target="_blank" class="text-gray-200 hover:text-accent-color transition duration-300 transform hover:scale-125" aria-label="Twitter Profile">
-                    <i class="fab fa-twitter"></i>
-                </a>
+            <div class="loading-dots">
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
             </div>
-        </section>
-        <section id="about" class="relative min-h-screen py-24 px-6 bg-secondary-bg section-reveal snap-start">
-            <div class="container mx-auto max-w-5xl relative z-10">
-                <h2 class="text-4xl md:text-5xl font-bold text-center text-heading-color mb-16">About Me</h2>
-                <div class="flex flex-col items-center">
-                    <div class="text-lg text-gray-300 text-center md:text-left md:w-full">
-                        <p class="mb-6 leading-relaxed">
-                            Hello! I'm <span class="text-accent-color font-semibold">Kanchan Rai</span>I am a passionate about machine learning, artificial intelligence, and data-driven problem-solving. I enjoy exploring AI & Cloud applications and working with data to gain insights. 
-                        </p>
-                        <p class="mb-6 leading-relaxed">
-                            I am also active in technical communities at my campus, engaging in events, workshops, and collaborations to enhance learning and innovation.I am seeking internship opportunities to apply my skills, gain hands-on industry experience, and learn from real-world projects. Let’s connect!
-                        </p>
-                        <h3 class="text-3xl font-bold text-heading-color mb-6 mt-8">Education</h3>
-                        <div class="timeline">
-                            <ul class="space-y-4">
-                                <li class="p-6 rounded-lg shadow-md border border-gray-700 card-hover-effect timeline-item card-item-animated glass-card">
-                                    <span class="font-bold text-accent-color text-lg">Bachelor of Technology in Computer Science</span>
-                                    <p class="text-gray-400 text-md">Amity University, Noida (2022 - 2024)</p>
-                                    <p class="text-gray-400 text-sm mt-1">Focused on Software Engineering, Data Structures, and Algorithms.</p>
-                                </li>
-                                <li class="p-6 rounded-lg shadow-md border border-gray-700 card-hover-effect timeline-item card-item-animated glass-card">
-                                    <span class="font-bold text-accent-color text-lg">Higher Secondary School</span>
-                                    <p class="text-gray-400 text-md">Kendriya Vidyalaya No 1 AFS Hindon (2022)</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="experience" class="relative min-h-screen py-24 px-6 bg-primary-bg section-reveal snap-start">
-            <div class="container mx-auto max-w-3xl relative z-10">
-                <h2 class="text-4xl md:text-5xl font-bold text-center text-heading-color mb-16">Work Experience</h2>
-                <div class="timeline">
-                    <ul class="space-y-8">
-                        <li class="p-4 rounded-lg shadow-md border border-gray-700 card-hover-effect timeline-item card-item-animated glass-card" onclick="toggleExpand(this)">
-                            <div class="flex items-center justify-between mb-2">
-                                <div class="flex items-center">
-                                    <img src="icons/drdo.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/40x40/6366f1/ffffff?text=IS';" alt="Innovate Solutions Logo" class="w-10 h-10 rounded-full mr-4 border border-gray-600 flex-shrink-0">
-                                    <div>
-                                        <h3 class="text-xl font-bold text-accent-color">Software Developer Intern</h3>
-                                        <p class="text-lg font-semibold text-white">Defence Research & Development Organization<span class="text-gray-400 text-sm"> - Delhi, India</span></p>
-                                    </div>
-                                </div>
-                                <i class="fas fa-chevron-right text-lg text-gray-400 expand-toggle-icon"></i>
-                            </div>
-                            <p class="text-gray-400 text-xs mb-2">May 2025 - July 2025</p>
-                            <div class="expandable-content">
-                               <div>
-                                Developing a dashboard and analytical tool for DARPAN (Dashboard for Analytical Review of Projects Across Nation) using FastAPI and SQLAlchemy, designed to manage project data and user access while significantly reducing manual dashboard management. Also building custom software solutions for the Technical Secretary of SSPL, DRDO to streamline internal operations and project workflows.
-                               </div>
-                            </div>
-                        </li>
-                        <li class="p-4 rounded-lg shadow-md border border-gray-700 card-hover-effect timeline-item card-item-animated glass-card" onclick="toggleExpand(this)">
-                            <div class="flex items-center justify-between mb-2">
-                                <div class="flex items-center">
-                                    <img src="icons/dhi.jpeg" alt="DRDO Logo" class="w-10 h-10 rounded-full mr-4 border border-gray-600 flex-shrink-0">
-                                    <div>
-                                        <h3 class="text-xl font-bold text-accent-color">AI/ML Developer Intern</h3>
-                                        <p class="text-lg font-semibold text-white">Digital Hercules Innovations<span class="text-gray-400 text-sm"> - Noida, India</span></p>
-                                    </div>
-                                </div>
-                                <i class="fas fa-chevron-right text-lg text-gray-400 expand-toggle-icon"></i>
-                            </div>
-                            <p class="text-gray-400 text-xs mb-2">May 2025 - July 2025</p>
-                            <div class="expandable-content">
-                                <div>
-                                    Currently contributing to CreatAIGenie's Generative AI project, focusing on fine-tuning large language models (LLMs) to enhance the keyword extraction component for improved relevance and accuracy.
-                                </div>
-                            </div>
-                        </li>
-                        <li class="p-4 rounded-lg shadow-md border border-gray-700 card-hover-effect timeline-item card-item-animated glass-card" onclick="toggleExpand(this)">
-                            <div class="flex items-center justify-between mb-2">
-                                <div class="flex items-center">
-                                    <img src="icons/bharatxr.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/40x40/6366f1/ffffff?text=CB';" alt="Creative Byte Logo" class="w-10 h-10 rounded-full mr-4 border border-gray-600 flex-shrink-0">
-                                    <div>
-                                        <h3 class="text-xl font-bold text-accent-color">Machine Learning Analyst</h3>
-                                        <p class="text-lg font-semibold text-white">BharatXR <span class="text-gray-400 text-sm">- Remote</span></p>
-                                    </div>
-                                </div>
-                                <i class="fas fa-chevron-right text-lg text-gray-400 expand-toggle-icon"></i>
-                            </div>
-                            <p class="text-gray-400 text-xs mb-2">June 2024 - July 2024</p>
-                            <div class="expandable-content">
-                                <div>
-                                    Designed and implemented AI-driven solutions using Python and Flask, including a Stable Diffusion-based text-to-image generation app, an event data visualization tool, and an NSFW content filter. Developed a secure data migration system from MySQL to MongoDB and an automated bulk email sender with real-time delivery tracking. Contributed to the UI/UX design of BharatXR’s official blog platform.
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        <section id="skills" class="relative min-h-screen py-24 px-6 bg-primary-bg section-reveal snap-start">
-            <div class="container mx-auto max-w-5xl relative z-10">
-                <h2 class="text-4xl md:text-5xl font-bold text-center text-heading-color mb-16">My Skills</h2>
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 text-center">
-                    <div class="card-hover-effect flex flex-col items-center p-4 rounded-xl shadow-lg border border-gray-700 card-item-animated glass-card">
-                        <i class="fab fa-html5 text-5xl text-orange-500 mb-3"></i>
-                        <span class="text-lg font-semibold text-white">HTML5</span>
-                    </div>
-                    <div class="card-hover-effect flex flex-col items-center p-4 rounded-xl shadow-lg border border-gray-700 card-item-animated glass-card">
-                        <i class="fab fa-css3-alt text-5xl text-blue-500 mb-3"></i>
-                        <span class="text-lg font-semibold text-white">CSS3</span>
-                    </div>
-                    <div class="card-hover-effect flex flex-col items-center p-4 rounded-xl shadow-lg border border-gray-700 card-item-animated glass-card">
-                        <i class="fab fa-js text-5xl text-yellow-400 mb-3"></i>
-                        <span class="text-lg font-semibold text-white">JavaScript</span>
-                    </div>
-                    <div class="card-hover-effect flex flex-col items-center p-4 rounded-xl shadow-lg border border-gray-700 card-item-animated glass-card">
-                        <i class="fa-brands fa-python text-5xl text-blue-700 mb-3"></i>
-                        <span class="text-lg font-semibold text-white">Python</span>
-                    </div>
-                    <div class="card-hover-effect flex flex-col items-center p-4 rounded-xl shadow-lg border border-gray-700 card-item-animated glass-card">
-                        <i class="fa-solid fa-c text-5xl text-cyan-400 mb-3"></i>
-                        <span class="text-lg font-semibold text-white">C/C++</span>
-                    </div>
-                    <div class="card-hover-effect flex flex-col items-center p-4 rounded-xl shadow-lg border border-gray-700 card-item-animated glass-card">
-                        <i class="fa-brands fa-java text-5xl text-green-500 mb-3"></i>
-                        <span class="text-lg font-semibold text-white">Java</span>
-                    </div>
-                    <div class="card-hover-effect flex flex-col items-center p-4 rounded-xl shadow-lg border border-gray-700 card-item-animated glass-card">
-                        <i class="devicon-django-plain text-5xl text-red-600 mb-3"></i>
-                        <span class="text-lg font-semibold text-white">Django</span>
-                    </div>
-                    <div class="card-hover-effect flex flex-col items-center p-4 rounded-xl shadow-lg border border-gray-700 card-item-animated glass-card">
-                        <i class="devicon-tailwindcss-original text-5xl text-teal-400 mb-3"></i>
-                        <span class="text-lg font-semibold text-white">Tailwind CSS</span>
-                    </div>
-                    <div class="card-hover-effect flex flex-col items-center p-4 rounded-xl shadow-lg border border-gray-700 card-item-animated glass-card">
-                        <i class="devicon-fastapi-plain text-5xl text-purple-600 mb-3"></i>
-                        <span class="text-lg font-semibold text-white">Fast API</span>
-                    </div>
-                    <div class="card-hover-effect flex flex-col items-center p-4 rounded-xl shadow-lg border border-gray-700 card-item-animated glass-card">
-                        <i class="devicon-flask-original text-5xl text-pink-500 mb-3"></i>
-                        <span class="text-lg font-semibold text-white">Flask</span>
-                    </div>
-                    <div class="card-hover-effect flex flex-col items-center p-4 rounded-xl shadow-lg border border-gray-700 card-item-animated glass-card">
-                        <i class="fab fa-git-alt text-5xl text-red-500 mb-3"></i>
-                        <span class="text-lg font-semibold text-white">Git & GitHub</span>
-                    </div>
-                    <div class="card-hover-effect flex flex-col items-center p-4 rounded-xl shadow-lg border border-gray-700 card-item-animated glass-card">
-                        <i class="fa-solid fa-gear text-5xl text-green-600 mb-3"></i>
-                        <span class="text-lg font-semibold text-white">Machine Learning</span>
-                    </div>
-                    <div class="card-hover-effect flex flex-col items-center p-4 rounded-xl shadow-lg border border-gray-700 card-item-animated glass-card">
-                        <i class="fa-solid fa-flask text-5xl text-green-600 mb-3"></i>
-                        <span class="text-lg font-semibold text-white">Fine Tuning LLMs</span>
-                    </div>
-                    <div class="card-hover-effect flex flex-col items-center p-4 rounded-xl shadow-lg border border-gray-700 card-item-animated glass-card">
-                        <i class="devicon-firebase-plain colored text-5xl text-green-600 mb-3"></i>
-                        <span class="text-lg font-semibold text-white">Firebase</span>
-                    </div>
-                    <div class="card-hover-effect flex flex-col items-center p-4 rounded-xl shadow-lg border border-gray-700 card-item-animated glass-card">
-                        <i class="devicon-tensorflow-original colored text-5xl text-green-600 mb-3"></i>
-                        <span class="text-lg font-semibold text-white">Tensorflow</span>
-                    </div>
-                    <div class="card-hover-effect flex flex-col items-center p-4 rounded-xl shadow-lg border border-gray-700 card-item-animated glass-card">
-                        <i class="devicon-mongodb-plain colored text-5xl text-green-600 mb-3"></i>
-                        <span class="text-lg font-semibold text-white">MongoDB</span>
-                    </div>
-                    <div class="card-hover-effect flex flex-col items-center p-4 rounded-xl shadow-lg border border-gray-700 card-item-animated glass-card">
-                        <i class="devicon-azuresqldatabase-plain text-5xl text-green-600 mb-3"></i>
-                        <span class="text-lg font-semibold text-white">SQL</span>
-                    </div>
-                    <div class="card-hover-effect flex flex-col items-center p-4 rounded-xl shadow-lg border border-gray-700 card-item-animated glass-card">
-                        <i class="devicon-figma-plain colored text-5xl text-green-600 mb-3"></i>
-                        <span class="text-lg font-semibold text-white">Figma</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="projects" class="relative min-h-screen py-24 px-6 bg-secondary-bg section-reveal snap-start">
-            <div class="container mx-auto max-w-6xl relative z-10">
-                <h2 class="text-4xl md:text-5xl font-bold text-center text-heading-color mb-16">Projects</h2>
-                <div id="projects-carousel" class="flex overflow-x-auto scroll-smooth snap-x snap-mandatory hide-scrollbar gap-8 pb-4">
-                    <div class="project-card-wrapper flex-shrink-0 w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)] snap-center">
-                        <div class="project-card-item card-hover-effect rounded-2xl shadow-xl overflow-hidden border border-gray-700 card-item-animated glass-card h-full flex flex-col">
-                            <img src="projects/circuit.png" alt="Face Detector & Notifier Thumbnail" class="w-full h-48 object-cover border-b-2 border-accent-color">
-                            <div class="p-6 flex-grow flex flex-col">
-                                <h3 class="text-2xl font-semibold text-heading-color mb-2">Face Detector & Notifier</h3>
-                                <p class="text-gray-400 mb-4 text-sm leading-relaxed flex-grow">
-                                    A <span class="text-cyan-400 font-medium">Python</span>-based face detection system using <span class="text-yellow-400 font-medium">OpenCV</span> and <span class="text-green-400 font-medium">YOLOv3</span> for face detection, integrated with <span>Arduino</span> for real-time signal transmission, and a Python-based face recognition system leveraging a pre-trained ResNet-18, also integrated with Arduino for signal output. 
-                                </p>
-                                <div class="flex justify-between items-center text-base mt-auto">
-                                    <a href="https://www.linkedin.com/posts/kanchanraiii_arduino-opencv-yolo-activity-7301663352735350784-FnkK?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD2vzZIBEPqfmInLw05SXTnwbi-YibrulwM" target="_blank" class="text-accent-color hover:text-indigo-400 transition duration-300 font-medium flex items-center">
-                                        <i class="fas fa-external-link-alt mr-2"></i> Live Demo
-                                    </a>
-                                    <a href="https://github.com/rajatrajputdev/smartface-detector" target="_blank" class="text-gray-400 hover:text-white transition duration-300 font-medium flex items-center">
-                                        <i class="fab fa-github mr-2"></i> GitHub
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-card-wrapper flex-shrink-0 w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)] snap-center">
-                        <div class="project-card-item card-hover-effect rounded-2xl shadow-xl overflow-hidden border border-gray-700 card-item-animated glass-card h-full flex flex-col">
-                            <img src="projects/sentiment.jpg" alt="Fine Tuning DistilBERT" class="w-full h-48 object-cover border-b-2 border-accent-color">
-                            <div class="p-6 flex-grow flex flex-col">
-                                <h3 class="text-2xl font-semibold text-heading-color mb-2">Fine Tuning DistilBERT for Sentiment Analysis</h3>
-                                <p class="text-gray-400 mb-4 text-sm leading-relaxed flex-grow">
-                                    A fine tuned version of DistilBERT model trained on Google's <span class="text-orange-500 font-medium">GoEmotions Dataset</span> for <span class="text-purple-600 font-medium">Sentiment Analysis</span> categorizing 27 emotion categories.
-                                </p>
-                                <div class="flex justify-between items-center text-base mt-auto">
-                                    <a href="https://drive.google.com/drive/folders/1gmA4-s1gCMfC9k4XUWVKyo7ixeBI-36V" target="_blank" class="text-accent-color hover:text-indigo-400 transition duration-300 font-medium flex items-center">
-                                        <i class="fas fa-external-link-alt mr-2"></i> Download Model
-                                    </a>
-                                    <a href="https://github.com/kanchanraiii/SentimentAnalysis_GoEmotions" target="_blank" class="text-gray-400 hover:text-white transition duration-300 font-medium flex items-center">
-                                        <i class="fab fa-github mr-2"></i> GitHub
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-card-wrapper flex-shrink-0 w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)] snap-center">
-                        <div class="project-card-item card-hover-effect rounded-2xl shadow-xl overflow-hidden border border-gray-700 card-item-animated glass-card h-full flex flex-col">
-                            <img src="projects/krishi-mitr.jpg" alt="Krishi Mitr Thumbnail" class="w-full h-48 object-cover border-b-2 border-accent-color">
-                            <div class="p-6 flex-grow flex flex-col">
-                                <h3 class="text-2xl font-semibold text-heading-color mb-2">Krishi Mitr</h3>
-                                <p class="text-gray-400 mb-4 text-sm leading-relaxed flex-grow">
-                                    Krishi Mitr AI models with <span class="text-green-500 font-medium">95%+ accuracy</span> to support farmers. Predict rainfall (<span class="text-purple-600 font-medium">Ridge Regression</span>), get crop advice (<span class="text-green-500 font-medium">Random Forest</span>), estimate yields (<span class="text-yellow-600 font-medium">CatBoost</span>, <span class="text-orange-500 font-medium">XGBoost</span>, <span class="text-purple-600 font-medium">Decision Tree</span>), and assess AQI (<span class="text-blue-500 font-medium">XGBoost + Grid Search CV</span>).
-                                </p>
-                                <div class="flex justify-between items-center text-base mt-auto">
-                                    <a href="https://krishi-mitr.streamlit.app/" target="_blank" class="text-accent-color hover:text-indigo-400 transition duration-300 font-medium flex items-center">
-                                        <i class="fas fa-external-link-alt mr-2"></i> Visit Webapp
-                                    </a>
-                                    <a href="https://github.com/kanchanraiii/Krishi-Mitr" target="_blank" class="text-gray-400 hover:text-white transition duration-300 font-medium flex items-center">
-                                        <i class="fab fa-github mr-2"></i> GitHub
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-card-wrapper flex-shrink-0 w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)] snap-center">
-                        <div class="project-card-item card-hover-effect rounded-2xl shadow-xl overflow-hidden border border-gray-700 card-item-animated glass-card h-full flex flex-col">
-                            <img src="projects/aqi.jpg" alt="AQI Thumbnail" class="w-full h-48 object-cover border-b-2 border-accent-color">
-                            <div class="p-6 flex-grow flex flex-col">
-                                <h3 class="text-2xl font-semibold text-heading-color mb-2">AQI Predictor</h3>
-                                <p class="text-gray-400 mb-4 text-sm leading-relaxed flex-grow">
-                                    This project predicts <span class="text-yellow-500 font-medium">AQI (PM 2.5)</span> using multiple physical factors. It's a <span class="text-purple-600 font-medium">regression problem</span> tackled with models like <span class="text-green-500 font-medium">Linear</span>, <span class="text-red-600 font-medium">Lasso</span>, <span class="text-cyan-600 font-medium">Decision Tree</span>, <span class="text-purple-600 font-medium">Random Forest</span>, and <span class="text-green-500 font-medium">XGBoost</span>. Best results were achieved using <span class="text-purple-600 font-medium">XGBoost + GridSearchCV</span>. <span class="text-green-500 font-medium">EDA</span> and feature importance were also performed.
-                                </p>
-                                <div class="flex justify-between items-center text-base mt-auto">
-                                    <a href="https://air-quality-predict.streamlit.app/" target="_blank" class="text-accent-color hover:text-indigo-400 transition duration-300 font-medium flex items-center">
-                                        <i class="fas fa-external-link-alt mr-2"></i> Visit Webapp
-                                    </a>
-                                    <a href="https://github.com/kanchanraiii/Air-Quality-Prediction" target="_blank" class="text-gray-400 hover:text-white transition duration-300 font-medium flex items-center">
-                                        <i class="fab fa-github mr-2"></i> GitHub
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-card-wrapper flex-shrink-0 w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)] snap-center">
-                        <div class="project-card-item card-hover-effect rounded-2xl shadow-xl overflow-hidden border border-gray-700 card-item-animated glass-card h-full flex flex-col">
-                            <img src="projects/portfolio.png" alt="Portfolio Site Thumbnail" class="w-full h-48 object-cover border-b-2 border-accent-color">
-                            <div class="p-6 flex-grow flex flex-col">
-                                <h3 class="text-2xl font-semibold text-heading-color mb-2">Interactive Portfolio Site</h3>
-                                <p class="text-gray-400 mb-4 text-sm leading-relaxed flex-grow">
-                                    A minimalist and responsive personal portfolio website built with plain <span class="text-orange-500 font-medium">HTML</span>, <span class="text-blue-500 font-medium">CSS</span>, and <span class="text-yellow-400 font-medium">JavaScript</span>. Focuses on performance and engaging animations.
-                                </p>
-                                <div class="flex justify-between items-center text-base mt-auto">
-                                    <a href="https://kanchanraiii.web.app/" target="_blank" class="text-accent-color hover:text-indigo-400 transition duration-300 font-medium flex items-center">
-                                        <i class="fas fa-external-link-alt mr-2"></i> Visit Site
-                                    </a>
-                                    <a href="https://github.com/kanchanraiii/Portfolio" target="_blank" class="text-gray-400 hover:text-white transition duration-300 font-medium flex items-center">
-                                        <i class="fab fa-github mr-2"></i> GitHub
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex justify-center mt-8 space-x-4">
-                    <button id="prevProjectBtn" class="button-hover-effect bg-accent-color hover:bg-indigo-600 text-white font-bold py-2 px-6 rounded-full shadow-lg transition duration-300 ease-in-out">
-                        <i class="fas fa-chevron-left mr-2"></i> Previous
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="main-content">
+        <div class="background-container">
+            <div class="background-grid"></div>
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+        </div>
+
+    <!-- Header -->
+    <header id="header" class="backdrop-blur-lg fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out">
+        <div class="container max-w-7xl mx-auto px-6 py-6 md:py-8">
+            <div class="flex justify-between items-center">
+                <a href="#home" class="text-3xl md:text-3xl font-bold text-primary tracking-wider transition-all duration-300 hover:scale-105">kanchanraiii</a>
+                <div class="flex items-center space-x-6 md:space-x-10">
+                    <nav class="hidden md:flex items-center space-x-10">
+                        <a href="#home" class="nav-link text-secondary active text-xl font-medium">Home</a>
+                        <a href="#about" class="nav-link text-secondary text-xl font-medium">About</a>
+                        <a href="#projects" class="nav-link text-secondary text-xl font-medium">Projects</a>
+                        <a href="#experience" class="nav-link text-secondary text-xl font-medium">Experience</a>
+                        <a href="#contact" class="nav-link text-secondary text-xl font-medium">Contact</a>
+                    </nav>
+                    <button id="theme-toggle" class="text-secondary hover:text-primary transition-all duration-300 hover:scale-110">
+                        <i data-lucide="sun" class="w-6 h-6 md:w-7 md:h-7 hidden" id="sun-icon"></i>
+                        <i data-lucide="moon" class="w-6 h-6 md:w-7 md:h-7 hidden" id="moon-icon"></i>
                     </button>
-                    <button id="nextProjectBtn" class="button-hover-effect bg-accent-color hover:bg-indigo-600 text-white font-bold py-2 px-6 rounded-full shadow-lg transition duration-300 ease-in-out">
-                        Next <i class="fas fa-chevron-right ml-2"></i>
+                    <button id="mobile-menu-button" class="md:hidden text-primary text-2xl transition-all duration-300 hover:scale-110">
+                        <i data-lucide="menu" class="w-7 h-7"></i>
                     </button>
                 </div>
             </div>
-        </section>
-        <section id="contact" class="relative min-h-screen py-24 px-6 bg-primary-bg section-reveal snap-start flex items-center justify-center">
-            <div class="container mx-auto max-w-xl text-center p-8 rounded-2xl shadow-xl border border-gray-700 glass-card">
-                <h2 class="text-4xl md:text-5xl font-bold text-heading-color mb-8">Let's Connect</h2>
-                <form> 
-                    <p class="text-lg md:text-xl text-gray-300 leading-relaxed">
-                        Thank you so much for stopping by! 😊 <br>
-                        I'd love to hear from you - feel free to drop a message at  
-                        <a href="mailto:kanchanrai2307@gmail.com" class="text-accent-color hover:underline font-semibold">
-                            kanchanrai2307@gmail.com
-                        </a>. <br>
-                        Let’s connect together! 
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden backdrop-blur-lg transition-all duration-300 ease-out">
+            <a href="#home" class="block py-4 px-8 text-lg text-secondary hover:bg-slate-800 hover:text-primary transition-all duration-300">Home</a>
+            <a href="#about" class="block py-4 px-8 text-lg text-secondary hover:bg-slate-800 hover:text-primary transition-all duration-300">About</a>
+            <a href="#projects" class="block py-4 px-8 text-lg text-secondary hover:bg-slate-800 hover:text-primary transition-all duration-300">Projects</a>
+            <a href="#experience" class="block py-4 px-8 text-lg text-secondary hover:bg-slate-800 hover:text-primary transition-all duration-300">Experience</a>
+            <a href="#contact" class="block py-4 px-8 text-lg text-secondary hover:bg-slate-800 hover:text-primary transition-all duration-300">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center text-center relative">
+             <div class="container max-w-7xl mx-auto px-6 z-10">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="hero-text text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-7.5xl font-bold text-primary leading-tight mb-6 whitespaces-nowrap">
+                        Hey, I'm Kanchan Rai
+                    </h2>
+                    <p class="hero-text text-2xl md:text-3xl font-semibold">
+                        Aspiring Software Developer
                     </p>
-                </form>
+                    <br><br>
+                    <div class="hero-buttons flex flex-col sm:flex-row justify-center gap-4 px-4">
+                        <a href="#projects" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 px-6 md:py-4 md:px-10 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-indigo-500/30 text-base md:text-lg lg:text-xl text-center">Explore My Work</a>
+                        <a href="mailto:hello@johndoe.com" class="bg-slate-800 hover:bg-slate-700 text-primary font-semibold py-3 px-6 md:py-4 md:px-10 rounded-full transition-all duration-300 hover:scale-105 text-base md:text-lg lg:text-xl text-center flex items-center justify-center">
+                            <i data-lucide="mail" class="inline-block mr-2 h-5 w-5 md:h-6 md:w-6"></i>
+                            Contact Me
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About & Skills Section (Bento Grid) -->
+        <section id="about" class="section">
+            <div class="container max-w-7xl mx-auto px-6">
+                 <div class="text-center mb-16">
+                    <h2 class="text-5xl md:text-6xl font-bold text-primary">About & Skills</h2>
+                    <p class="text-xl md:text-2xl text-secondary mt-4 max-w-2xl mx-auto">A little about my journey and the tools I use.</p>
+                </div>
+                <div class="bento-grid bento-grid-about">
+                    <div class="glass-card bento-item-large bento-item-tall p-8 rounded-2xl">
+                        <h3 class="text-3xl md:text-4xl font-bold text-primary mb-4">Hello, I'm Kanchan.</h3><br>
+                        <p class="text-slate-300 mb-4 text-lg md:text-xl">I am a final-year B.Tech CSE student at Amity University, passionate about AI, ML, and data-driven problem-solving. I enjoy building web applications, dashboards, and automation tools, exploring cloud solutions, and working with data to create meaningful insights.
+                        I aim to apply my skills to impactful projects, learn from real-world challenges, and contribute to innovative solutions.</p>
+                        <p class="text-slate-300 text-lg md:text-xl">I am seeking internship opportunities to apply my skills, gain hands-on industry experience, and learn from real-world projects.</p>
+                    </div>
+                    <div class="glass-card bento-item-large p-8 rounded-2xl">
+                        <h3 class="text-3xl md:text-4xl font-bold text-primary mb-6">Techstack</h3>
+                        <div class="flex flex-wrap gap-4">
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">Python</span>
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">C/C++</span>
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">Java</span>
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">Tailwind CSS</span>
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">HTML5 & CSS3</span>
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">MongoDB</span>
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">SQL</span>
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">Django</span>
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">Firebase</span>
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">Git/GitHub</span>
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">Figma</span>
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">AI/ML</span>
+                        </div>
+                    </div>
+                    <div class="glass-card bento-item-large p-8 rounded-2xl">
+                         <h3 class="text-3xl md:text-4xl font-bold text-primary mb-6">Certifications</h3>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="https://learn.microsoft.com/en-us/users/kanchanrai-9728/credentials/ca37686b433db2ca?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" class="bg-slate-800 text-indigo-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">Azure AI Engineer Associate (AI 102)</a>
+                            <a href="https://learn.microsoft.com/en-us/users/kanchanrai-9728/credentials/968777c0425fe7f?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" class="bg-slate-800 text-indigo-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">Azure AI Fundamentals (AI 900)</a>
+                            <a href="https://www.credly.com/badges/1f5ddc3b-77ed-408e-a8a6-e724a27766f2/print" target="_blank" class="bg-slate-800 text-indigo-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">GitHub Foundations</a>
+                            <a href="https://badgr.com/public/assertions/F05zzO8mTHW07ds35aDwAg" target="_blank" class="bg-slate-800 text-indigo-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">Postman Student Expert</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br><br><br>
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="container max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl md:text-6xl font-bold text-primary">Featured Projects</h2>
+                    <p class="text-xl md:text-2xl text-secondary mt-4 max-w-2xl mx-auto">A selection of my projects.</p>
+                </div>
+                <div class="bento-grid bento-grid-projects">
+                    <!-- Project 1 -->
+                    <div class="glass-card rounded-2xl p-0 flex-col justify-start">
+                        <div class="aspect-video overflow-hidden rounded-t-2xl">
+                            <img src="projects/circuit.png" alt="Project A" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-2xl md:text-2xl font-bold text-primary mb-2">Face Detector & Notifier</h3>
+                            <p class="text-secondary text-base md:text-lg mb-4 flex-grow">Built Python-based face detection and recognition systems with Arduino integration for real-time signals.
+</p>
+                            <div class="flex justify-between items-center mt-auto">
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-slate-800 text-sky-300 text-sm md:text-base font-semibold px-3 py-1.5 rounded-full">Yolov3</span>
+                                    <span class="bg-slate-800 text-sky-300 text-sm md:text-base font-semibold px-3 py-1.5 rounded-full">Resnet-18</span>
+                                    <span class="bg-slate-800 text-sky-300 text-sm md:text-base font-semibold px-3 py-1.5 rounded-full">Arduino</span>
+                                </div>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="text-secondary hover:text-primary"><i data-lucide="github" class="w-6 h-6"></i></a>
+                                    <a href="#" class="text-secondary hover:text-primary"><i data-lucide="external-link" class="w-6 h-6"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="glass-card rounded-2xl p-0 flex-col justify-start">
+                        <div class="aspect-video overflow-hidden rounded-t-2xl">
+                            <img src="projects/sentiment.jpg" alt="Project B" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-2xl md:text-2xl font-bold text-primary mb-2">Fine Tuning DistilBERT for Sentiment Analysis</h3>
+                            <p class="text-secondary text-base md:text-lg mb-4 flex-grow">Fine-tuned DistilBERT on Google’s GoEmotions dataset for 27-category sentiment analysis.
+</p>
+                            <div class="flex justify-between items-center mt-auto">
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-slate-800 text-sky-300 text-sm md:text-base font-semibold px-3 py-1.5 rounded-full">Python</span>
+                                    <span class="bg-slate-800 text-sky-300 text-sm md:text-base font-semibold px-3 py-1.5 rounded-full">Fine Tuning</span>
+                                </div>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="text-secondary hover:text-primary"><i data-lucide="github" class="w-6 h-6"></i></a>
+                                    <a href="#" class="text-secondary hover:text-primary"><i data-lucide="external-link" class="w-6 h-6"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 3 -->
+                    <div class="glass-card rounded-2xl p-0 flex-col justify-start">
+                        <div class="aspect-video overflow-hidden rounded-t-2xl">
+                            <img src="projects/krishi-mitr.png" alt="Project C" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-2xl md:text-2xl font-bold text-primary mb-2">Krishi-Mitr</h3>
+                            <p class="text-secondary text-base md:text-lg mb-4 flex-grow">Developed Krishi Mitr AI models with 95%+ accuracy for rainfall prediction, crop advice, yield estimation, and AQI assessment.
+</p>
+                            <div class="flex justify-between items-center mt-auto">
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-slate-800 text-sky-300 text-sm md:text-base font-semibold px-3 py-1.5 rounded-full">Python</span>
+                                    <span class="bg-slate-800 text-sky-300 text-sm md:text-base font-semibold px-3 py-1.5 rounded-full">Streamlit</span>
+                                    <span class="bg-slate-800 text-sky-300 text-sm md:text-base font-semibold px-3 py-1.5 rounded-full">EDA</span>
+                                    <span class="bg-slate-800 text-sky-300 text-sm md:text-base font-semibold px-3 py-1.5 rounded-full">Ensemble Models</span>
+                                </div>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="text-secondary hover:text-primary"><i data-lucide="github" class="w-6 h-6"></i></a>
+                                    <a href="#" class="text-secondary hover:text-primary"><i data-lucide="external-link" class="w-6 h-6"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 4 -->
+                    <div class="glass-card rounded-2xl p-0 flex-col justify-start">
+                        <div class="aspect-video overflow-hidden rounded-t-2xl">
+                            <img src="projects/aqi.jpg" alt="Project D" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-2xl md:text-2xl font-bold text-primary mb-2">AQI Predictor</h3>
+                            <p class="text-secondary text-base md:text-lg mb-4 flex-grow">Built an AQI (PM2.5) prediction model using multiple regression algorithms, achieving best results with XGBoost + GridSearchCV.
+</p>
+                            <div class="flex justify-between items-center mt-auto">
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-slate-800 text-sky-300 text-sm md:text-base font-semibold px-3 py-1.5 rounded-full">Streamlit</span>
+                                </div>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="text-secondary hover:text-primary"><i data-lucide="github" class="w-6 h-6"></i></a>
+                                    <a href="#" class="text-secondary hover:text-primary"><i data-lucide="external-link" class="w-6 h-6"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br><br><br>
+        <!-- Experience Section -->
+        <section id="experience" class="section">
+            <div class="container max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl md:text-6xl font-bold text-primary">Career Experience</h2>
+                    <p class="text-xl md:text-2xl text-secondary mt-4 max-w-2xl mx-auto">My professional journey so far.</p>
+                </div>
+                <div class="bento-grid bento-grid-experience">
+                    <div class="glass-card p-8 rounded-2xl">
+                        <p class="text-secondary mb-2 text-base md:text-lg">May 2025 - July 2025</p>
+                        <h3 class="text-2xl md:text-3xl font-bold text-primary">Developer Intern</h3>
+                        <p class="text-sky-400 mb-4 text-lg md:text-xl">SSPL, DRDO</p>
+                        <p class="text-secondary text-base md:text-lg">Developed dashboards and custom software solutions to manage research projects, enhance analytics, and streamline internal workflows.
+
+</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl">
+                        <p class="text-secondary mb-2 text-base md:text-lg">May 2025 - July 2025</p>
+                        <h3 class="text-2xl md:text-3xl font-bold text-primary">AI/ML Intern</h3>
+                        <p class="text-sky-400 mb-4 text-lg md:text-xl">Digital Hercules Innovations</p>
+                        <p class="text-secondary text-base md:text-lg">Worked on CreatAIGenie’s Generative AI project, fine-tuning LLMs and leveraging GANs to improve keyword extraction accuracy.
+</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl">
+                        <p class="text-secondary mb-2 text-base md:text-lg">June 2024 - July 2024</p>
+                        <h3 class="text-2xl md:text-3xl font-bold text-primary">ML Analyst Intern</h3>
+                        <p class="text-sky-400 mb-4 text-lg md:text-xl">BharatXR</p>
+                        <p class="text-secondary text-base md:text-lg">Built AI-powered applications and automation tools, covering data processing, visualization, security, and UI/UX design.
+</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br>
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-5xl md:text-6xl font-bold text-primary">Let's Build Together</h2>
+            <p class="text-xl md:text-2xl text-secondary mt-4 max-w-2xl mx-auto">I'm always excited to discuss new projects and opportunities. If you have an idea you'd like to bring to life, let's connect.</p>
+            <div class="mt-12">
+                 <a href="mailto:kanchanrai2307@gmail.com" class="inline-block bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-4 px-10 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-indigo-500/30 text-xl md:text-2xl">
+                Say Hello
+                </a>
+            </div>
             </div>
         </section>
     </main>
-    <nav class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-slate-700/80 backdrop-filter backdrop-blur-lg rounded-full shadow-lg py-3 px-6 w-11/12 max-w-sm md:max-w-md">
-        <ul class="flex justify-around items-center h-full">
-            <li>
-                <a href="#home" class="flex flex-col items-center text-gray-200 hover:text-accent-color transition-colors duration-300 group" aria-label="Home">
-                    <i class="fas fa-home text-xl mb-1 group-hover:scale-110 transition-transform"></i>
-                    <span class="text-xs font-medium">Home</span>
-                </a>
-            </li>
-            <li>
-                <a href="#about" class="flex flex-col items-center text-gray-200 hover:text-accent-color transition-colors duration-300 group" aria-label="About">
-                    <i class="fas fa-user text-xl mb-1 group-hover:scale-110 transition-transform"></i>
-                    <span class="text-xs font-medium">About</span>
-                </a>
-            </li>
-            <li>
-                <a href="#experience" class="flex flex-col items-center text-gray-200 hover:text-accent-color transition-colors duration-300 group" aria-label="Experience">
-                    <i class="fas fa-briefcase text-xl mb-1 group-hover:scale-110 transition-transform"></i>
-                    <span class="text-xs font-medium">Experience</span>
-                </a>
-            </li>
-            <li>
-                <a href="#skills" class="flex flex-col items-center text-gray-200 hover:text-accent-color transition-colors duration-300 group" aria-label="Skills">
-                    <i class="fas fa-tools text-xl mb-1 group-hover:scale-110 transition-transform"></i>
-                    <span class="text-xs font-medium">Skills</span>
-                </a>
-            </li>
-            <li>
-                <a href="#projects" class="flex flex-col items-center text-gray-200 hover:text-accent-color transition-colors duration-300 group" aria-label="Projects">
-                    <i class="fas fa-laptop-code text-xl mb-1 group-hover:scale-110 transition-transform"></i>
-                    <span class="text-xs font-medium">Projects</span>
-                </a>
-            </li>
-            <li>
-                <a href="#contact" class="flex flex-col items-center text-gray-200 hover:text-accent-color transition-colors duration-300 group" aria-label="Contact">
-                    <i class="fas fa-envelope text-xl mb-1 group-hover:scale-110 transition-transform"></i>
-                    <span class="text-xs font-medium">Contact</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <footer class="bg-gray-900 py-10 px-6 text-center text-gray-500 text-sm border-t border-gray-800">
-        <div class="container mx-auto">
-            &copy; <span id="current-year"></span> Built with ❤️ by Kanchan.
+    <br>
+    <br>
+    <!-- Footer -->
+    <footer>
+        <div class="container max-w-7xl mx-auto px-6 py-8">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-6">
+                <p class="text-secondary text-base md:text-1.5xl" >Made with ❤️ by <a href="https://linkedin.com/in/kanchanraiii" target="_blank">Kanchan Rai</a></p>
+                <div class="flex space-x-6">
+                    <a href="https://github.com/kanchanraiii" target="_blank" class="text-secondary hover:text-primary transition-colors"><i data-lucide="github" class="w-7 h-7"></i></a>
+                    <a href="https://linkedin.com/in/kanchanraiii" target="_blank" class="text-secondary hover:text-primary transition-colors"><i data-lucide="linkedin" class="w-7 h-7"></i></a>
+                    <a href="https://x.com/kanchanraiii" target="_blank" class="text-secondary hover:text-primary transition-colors"><i data-lucide="twitter" class="w-7 h-7"></i></a>
+                </div>
+            </div>
         </div>
     </footer>
+    </div> <!-- End main-content -->
+
     <script src="script.js"></script>
 </body>
 </html>

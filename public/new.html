@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanchan Rai</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <style>
+        :root {
+            --background: #000000;
+            --primary: #ffffff;
+            --secondary: #a1a1aa;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --card-hover-border: #ffffff;
+            --header-bg: rgba(0, 0, 0, 0.5);
+            --grid-bg: rgba(250, 244, 244, 0.08);
+            --accent: #2563eb; 
+            --accent-gradient: linear-gradient(90deg, #2563eb, #4f46e5); 
+        }
+
+        .light-mode {
+            --background: #f8fafc;
+            --primary: #020617;
+            --secondary: #475569;
+            --card-bg: rgba(255, 255, 255, 0.6);
+            --card-border: rgba(0, 0, 0, 0.08);
+            --card-hover-border: #000000;
+            --header-bg: rgba(255, 255, 255, 0.5);
+            --grid-bg: rgba(71, 69, 69, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--secondary);
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .section {
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .glass-card:hover {
+            border-color: var(--card-hover-border);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .light-mode .glass-card:hover {
+             box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-image: var(--accent-gradient);
+            transition: width 0.3s ease;
+            border-radius: 3px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 80%;
+        }
+
+        /* Header scroll effects */
+        .header-scrolled {
+            padding-top: 0.75rem !important;
+            padding-bottom: 0.75rem !important;
+            background-color: rgba(0, 0, 0, 0.8) !important;
+            backdrop-filter: blur(20px) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .light-mode .header-scrolled {
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .header-scrolled .logo {
+            transform: scale(0.9);
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Enhanced mobile menu animations */
+        #mobile-menu {
+            transform: translateY(-10px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            border-top: 1px solid var(--card-border);
+        }
+
+        #mobile-menu:not(.hidden) {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #mobile-menu a {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        #mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .gradient-text {
+            background: var(--accent-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-auto-rows: auto;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .bento-grid-about {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .bento-grid-projects {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .bento-grid-experience {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .bento-item-large {
+                grid-column: span 2;
+            }
+            .bento-item-tall {
+                grid-row: span 2;
+            }
+        }
+        
+        /* Background Animations */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.1;
+        }
+        
+        .blob-1 {
+            width: 700px;
+            height: 700px;
+            background: #38bdf8;
+            top: -2%;
+            left: -2%;
+            animation: blob-move-1 25s infinite alternate;
+        }
+        
+        .blob-2 {
+            width: 700px;
+            height: 700px;
+            background: #4f46e5;
+            bottom: -5%;
+            right: -5%;
+            animation: blob-move-2 20s infinite alternate-reverse;
+        }
+
+        @keyframes blob-move-1 {
+            from { transform: translate(0, 0) scale(1) rotate(0deg); }
+            to { transform: translate(100px, 50px) scale(1.2) rotate(45deg); }
+        }
+        @keyframes blob-move-2 {
+            from { transform: translate(0, 0) scale(1) rotate(0deg); }
+            to { transform: translate(-80px, -40px) scale(1.1) rotate(-60deg); }
+        }
+        
+        .background-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--grid-bg) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-bg) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: bg-pan 30s linear infinite;
+        }
+
+        @keyframes bg-pan {
+            from { background-position: 0 0; }
+            to { background-position: 50px 50px; }
+        }
+        
+        #header {
+            background-color: var(--header-bg);
+        }
+        
+        #mobile-menu {
+            background-color: var(--header-bg);
+        }
+
+        .light-mode .text-white {
+            color: var(--primary) !important;
+        }
+        
+        .light-mode .text-slate-300 {
+            color: var(--secondary) !important;
+        }
+        
+        .light-mode .text-sky-300 {
+            color: #0ea5e9 !important;
+        }
+
+        .light-mode .text-indigo-300 {
+            color: #6366f1 !important;
+        }
+
+        .light-mode .bg-slate-800 {
+            background-color: #e2e8f0 !important;
+        }
+        
+        .light-mode .bg-black\/20 {
+            background-color: rgba(0,0,0,0.02) !important;
+        }
+        
+        footer {
+            background-color: var(--background);
+            border-top: 1px solid var(--card-border);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* Text animation styles */
+        .hero-text .line {
+            overflow: hidden;
+            display: inline-block;
+        }
+        .hero-text .word {
+            transform: translateY(100%);
+            display: inline-block;
+        }
+        .hero-subtext, .hero-buttons {
+            opacity: 0;
+        }
+
+        /* Loading Screen Styles */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--background);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-content {
+            text-align: center;
+            position: relative;
+        }
+
+        .loading-logo {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: logoFadeIn 1s ease-out 0.5s forwards, logoGlow 2s ease-in-out infinite alternate;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(255, 255, 255, 0.3), 0 0 60px rgba(255, 255, 255, 0.2);
+        }
+
+        .loading-spinner {
+            width: 80px;
+            height: 80px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top: 3px solid #ffffff;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            animation: spin 1s linear infinite;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3), inset 0 0 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .loading-text {
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: textFadeIn 1s ease-out 1s forwards, textGlow 3s ease-in-out infinite;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 0 0 25px rgba(255, 255, 255, 0.2);
+            min-height: 1.5rem;
+        }
+
+        .loading-progress {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 0 auto;
+            opacity: 0;
+            animation: progressFadeIn 1s ease-out 1.2s forwards;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .loading-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ffffff, #f0f0f0, #ffffff);
+            background-size: 200% 100%;
+            border-radius: 4px;
+            width: 0%;
+            animation: progressFill 2s ease-out 1.5s forwards, progressGlow 1.5s ease-in-out infinite;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 25px rgba(255, 255, 255, 0.4);
+        }
+
+        .loading-dots {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            opacity: 0;
+            animation: dotsFadeIn 1s ease-out 1.8s forwards;
+        }
+
+        .loading-dot {
+            width: 8px;
+            height: 8px;
+            background: #ffffff;
+            border-radius: 50%;
+            animation: dotPulse 1.4s ease-in-out infinite;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+
+        .loading-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .loading-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        /* Light mode loading styles */
+        .light-mode .loading-screen {
+            background: var(--background);
+        }
+
+        .light-mode .loading-logo {
+            color: #000000;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .light-mode .loading-spinner {
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            border-top: 3px solid #000000;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2), inset 0 0 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .light-mode .loading-text {
+            color: #000000;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.3), 0 0 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .light-mode .loading-progress {
+            background: rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .light-mode .loading-progress-bar {
+            background: linear-gradient(90deg, #000000, #333333, #000000);
+            background-size: 200% 100%;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4), 0 0 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .light-mode .loading-dot {
+            background: #000000;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Loading Animations */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes logoFadeIn {
+            0% { opacity: 0; transform: translateY(20px) scale(0.9); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes logoGlow {
+            0% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(255, 255, 255, 0.3), 0 0 60px rgba(255, 255, 255, 0.2); }
+            100% { text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 60px rgba(255, 255, 255, 0.5), 0 0 90px rgba(255, 255, 255, 0.3); }
+        }
+
+        @keyframes textFadeIn {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 0 0 25px rgba(255, 255, 255, 0.2); }
+            50% { text-shadow: 0 0 25px rgba(255, 255, 255, 0.6), 0 0 35px rgba(255, 255, 255, 0.4); }
+        }
+
+        @keyframes progressFadeIn {
+            0% { opacity: 0; transform: scaleX(0); }
+            100% { opacity: 1; transform: scaleX(1); }
+        }
+
+        @keyframes progressFill {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes progressGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes dotsFadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes dotPulse {
+            0%, 100% { 
+                transform: scale(1); 
+                opacity: 0.7;
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4);
+            }
+            50% { 
+                transform: scale(1.3); 
+                opacity: 1;
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+            }
+        }
+
+        /* Hide main content initially */
+        .main-content {
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .main-content.loaded {
+            opacity: 1;
+        }
+
+    </style>
+
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo"></div>
+            <div class="loading-spinner"></div>
+            <div class="loading-text" id="loading-text">Preparing something awesome...</div>
+            <div class="loading-progress">
+                <div class="loading-progress-bar"></div>
+            </div>
+            <div class="loading-dots">
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="main-content">
+        <div class="background-container">
+            <div class="background-grid"></div>
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+        </div>
+
+    <!-- Header -->
+    <header id="header" class="backdrop-blur-lg fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out">
+        <div class="container max-w-7xl mx-auto px-6 py-6 md:py-8">
+            <div class="flex justify-between items-center">
+                <a href="#home" class="text-3xl md:text-3xl font-bold text-primary tracking-wider transition-all duration-300 hover:scale-105">kanchanraiii</a>
+                <div class="flex items-center space-x-6 md:space-x-10">
+                    <nav class="hidden md:flex items-center space-x-10">
+                        <a href="#home" class="nav-link text-secondary active text-xl font-medium">Home</a>
+                        <a href="#about" class="nav-link text-secondary text-xl font-medium">About</a>
+                        <a href="#projects" class="nav-link text-secondary text-xl font-medium">Projects</a>
+                        <a href="#experience" class="nav-link text-secondary text-xl font-medium">Experience</a>
+                        <a href="#contact" class="nav-link text-secondary text-xl font-medium">Contact</a>
+                    </nav>
+                    <button id="theme-toggle" class="text-secondary hover:text-primary transition-all duration-300 hover:scale-110">
+                        <i data-lucide="sun" class="w-6 h-6 md:w-7 md:h-7 hidden" id="sun-icon"></i>
+                        <i data-lucide="moon" class="w-6 h-6 md:w-7 md:h-7 hidden" id="moon-icon"></i>
+                    </button>
+                    <button id="mobile-menu-button" class="md:hidden text-primary text-2xl transition-all duration-300 hover:scale-110">
+                        <i data-lucide="menu" class="w-7 h-7"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden backdrop-blur-lg transition-all duration-300 ease-out">
+            <a href="#home" class="block py-4 px-8 text-lg text-secondary hover:bg-slate-800 hover:text-primary transition-all duration-300">Home</a>
+            <a href="#about" class="block py-4 px-8 text-lg text-secondary hover:bg-slate-800 hover:text-primary transition-all duration-300">About</a>
+            <a href="#projects" class="block py-4 px-8 text-lg text-secondary hover:bg-slate-800 hover:text-primary transition-all duration-300">Projects</a>
+            <a href="#experience" class="block py-4 px-8 text-lg text-secondary hover:bg-slate-800 hover:text-primary transition-all duration-300">Experience</a>
+            <a href="#contact" class="block py-4 px-8 text-lg text-secondary hover:bg-slate-800 hover:text-primary transition-all duration-300">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center text-center relative">
+             <div class="container max-w-7xl mx-auto px-6 z-10">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="hero-text text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-7.5xl font-bold text-primary leading-tight mb-6 whitespaces-nowrap">
+                        Hey, I'm Kanchan Rai
+                    </h2>
+                    <p class="hero-text text-2xl md:text-3xl font-semibold">
+                        Aspiring Software Developer
+                    </p>
+                    <br><br>
+                    <div class="hero-buttons flex flex-col sm:flex-row justify-center gap-4 px-4">
+                        <a href="#projects" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 px-6 md:py-4 md:px-10 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-indigo-500/30 text-base md:text-lg lg:text-xl text-center">Explore My Work</a>
+                        <a href="mailto:hello@johndoe.com" class="bg-slate-800 hover:bg-slate-700 text-primary font-semibold py-3 px-6 md:py-4 md:px-10 rounded-full transition-all duration-300 hover:scale-105 text-base md:text-lg lg:text-xl text-center flex items-center justify-center">
+                            <i data-lucide="mail" class="inline-block mr-2 h-5 w-5 md:h-6 md:w-6"></i>
+                            Contact Me
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About & Skills Section (Bento Grid) -->
+        <section id="about" class="section">
+            <div class="container max-w-7xl mx-auto px-6">
+                 <div class="text-center mb-16">
+                    <h2 class="text-5xl md:text-6xl font-bold text-primary">About & Skills</h2>
+                    <p class="text-xl md:text-2xl text-secondary mt-4 max-w-2xl mx-auto">A little about my journey and the tools I use.</p>
+                </div>
+                <div class="bento-grid bento-grid-about">
+                    <div class="glass-card bento-item-large bento-item-tall p-8 rounded-2xl">
+                        <h3 class="text-3xl md:text-4xl font-bold text-primary mb-4">Hello, I'm Kanchan.</h3><br>
+                        <p class="text-slate-300 mb-4 text-lg md:text-xl">I am a final-year B.Tech CSE student at Amity University, passionate about AI, ML, and data-driven problem-solving. I enjoy building web applications, dashboards, and automation tools, exploring cloud solutions, and working with data to create meaningful insights.
+                        I aim to apply my skills to impactful projects, learn from real-world challenges, and contribute to innovative solutions.</p>
+                        <p class="text-slate-300 text-lg md:text-xl">I am seeking internship opportunities to apply my skills, gain hands-on industry experience, and learn from real-world projects.</p>
+                    </div>
+                    <div class="glass-card bento-item-large p-8 rounded-2xl">
+                        <h3 class="text-3xl md:text-4xl font-bold text-primary mb-6">Techstack</h3>
+                        <div class="flex flex-wrap gap-4">
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">Python</span>
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">C/C++</span>
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">Java</span>
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">Tailwind CSS</span>
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">HTML5 & CSS3</span>
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">MongoDB</span>
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">SQL</span>
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">Django</span>
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">Firebase</span>
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">Git/GitHub</span>
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">Figma</span>
+                            <span class="bg-slate-800 text-sky-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">AI/ML</span>
+                        </div>
+                    </div>
+                    <div class="glass-card bento-item-large p-8 rounded-2xl">
+                         <h3 class="text-3xl md:text-4xl font-bold text-primary mb-6">Certifications</h3>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="https://learn.microsoft.com/en-us/users/kanchanrai-9728/credentials/ca37686b433db2ca?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" class="bg-slate-800 text-indigo-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">Azure AI Engineer Associate (AI 102)</a>
+                            <a href="https://learn.microsoft.com/en-us/users/kanchanrai-9728/credentials/968777c0425fe7f?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" class="bg-slate-800 text-indigo-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">Azure AI Fundamentals (AI 900)</a>
+                            <a href="https://www.credly.com/badges/1f5ddc3b-77ed-408e-a8a6-e724a27766f2/print" target="_blank" class="bg-slate-800 text-indigo-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">GitHub Foundations</a>
+                            <a href="https://badgr.com/public/assertions/F05zzO8mTHW07ds35aDwAg" target="_blank" class="bg-slate-800 text-indigo-300 text-base md:text-lg font-medium px-4 py-2 rounded-full">Postman Student Expert</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br><br><br>
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="container max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl md:text-6xl font-bold text-primary">Featured Projects</h2>
+                    <p class="text-xl md:text-2xl text-secondary mt-4 max-w-2xl mx-auto">A selection of my projects.</p>
+                </div>
+                <div class="bento-grid bento-grid-projects">
+                    <!-- Project 1 -->
+                    <div class="glass-card rounded-2xl p-0 flex-col justify-start">
+                        <div class="aspect-video overflow-hidden rounded-t-2xl">
+                            <img src="projects/circuit.png" alt="Project A" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-2xl md:text-2xl font-bold text-primary mb-2">Face Detector & Notifier</h3>
+                            <p class="text-secondary text-base md:text-lg mb-4 flex-grow">Built Python-based face detection and recognition systems with Arduino integration for real-time signals.
+</p>
+                            <div class="flex justify-between items-center mt-auto">
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-slate-800 text-sky-300 text-sm md:text-base font-semibold px-3 py-1.5 rounded-full">Yolov3</span>
+                                    <span class="bg-slate-800 text-sky-300 text-sm md:text-base font-semibold px-3 py-1.5 rounded-full">Resnet-18</span>
+                                    <span class="bg-slate-800 text-sky-300 text-sm md:text-base font-semibold px-3 py-1.5 rounded-full">Arduino</span>
+                                </div>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="text-secondary hover:text-primary"><i data-lucide="github" class="w-6 h-6"></i></a>
+                                    <a href="#" class="text-secondary hover:text-primary"><i data-lucide="external-link" class="w-6 h-6"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="glass-card rounded-2xl p-0 flex-col justify-start">
+                        <div class="aspect-video overflow-hidden rounded-t-2xl">
+                            <img src="projects/sentiment.jpg" alt="Project B" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-2xl md:text-2xl font-bold text-primary mb-2">Fine Tuning DistilBERT for Sentiment Analysis</h3>
+                            <p class="text-secondary text-base md:text-lg mb-4 flex-grow">Fine-tuned DistilBERT on Google’s GoEmotions dataset for 27-category sentiment analysis.
+</p>
+                            <div class="flex justify-between items-center mt-auto">
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-slate-800 text-sky-300 text-sm md:text-base font-semibold px-3 py-1.5 rounded-full">Python</span>
+                                    <span class="bg-slate-800 text-sky-300 text-sm md:text-base font-semibold px-3 py-1.5 rounded-full">Fine Tuning</span>
+                                </div>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="text-secondary hover:text-primary"><i data-lucide="github" class="w-6 h-6"></i></a>
+                                    <a href="#" class="text-secondary hover:text-primary"><i data-lucide="external-link" class="w-6 h-6"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 3 -->
+                    <div class="glass-card rounded-2xl p-0 flex-col justify-start">
+                        <div class="aspect-video overflow-hidden rounded-t-2xl">
+                            <img src="projects/krishi-mitr.png" alt="Project C" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-2xl md:text-2xl font-bold text-primary mb-2">Krishi-Mitr</h3>
+                            <p class="text-secondary text-base md:text-lg mb-4 flex-grow">Developed Krishi Mitr AI models with 95%+ accuracy for rainfall prediction, crop advice, yield estimation, and AQI assessment.
+</p>
+                            <div class="flex justify-between items-center mt-auto">
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-slate-800 text-sky-300 text-sm md:text-base font-semibold px-3 py-1.5 rounded-full">Python</span>
+                                    <span class="bg-slate-800 text-sky-300 text-sm md:text-base font-semibold px-3 py-1.5 rounded-full">Streamlit</span>
+                                    <span class="bg-slate-800 text-sky-300 text-sm md:text-base font-semibold px-3 py-1.5 rounded-full">EDA</span>
+                                    <span class="bg-slate-800 text-sky-300 text-sm md:text-base font-semibold px-3 py-1.5 rounded-full">Ensemble Models</span>
+                                </div>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="text-secondary hover:text-primary"><i data-lucide="github" class="w-6 h-6"></i></a>
+                                    <a href="#" class="text-secondary hover:text-primary"><i data-lucide="external-link" class="w-6 h-6"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 4 -->
+                    <div class="glass-card rounded-2xl p-0 flex-col justify-start">
+                        <div class="aspect-video overflow-hidden rounded-t-2xl">
+                            <img src="projects/aqi.jpg" alt="Project D" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-2xl md:text-2xl font-bold text-primary mb-2">AQI Predictor</h3>
+                            <p class="text-secondary text-base md:text-lg mb-4 flex-grow">Built an AQI (PM2.5) prediction model using multiple regression algorithms, achieving best results with XGBoost + GridSearchCV.
+</p>
+                            <div class="flex justify-between items-center mt-auto">
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-slate-800 text-sky-300 text-sm md:text-base font-semibold px-3 py-1.5 rounded-full">Streamlit</span>
+                                </div>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="text-secondary hover:text-primary"><i data-lucide="github" class="w-6 h-6"></i></a>
+                                    <a href="#" class="text-secondary hover:text-primary"><i data-lucide="external-link" class="w-6 h-6"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br><br><br>
+        <!-- Experience Section -->
+        <section id="experience" class="section">
+            <div class="container max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl md:text-6xl font-bold text-primary">Career Experience</h2>
+                    <p class="text-xl md:text-2xl text-secondary mt-4 max-w-2xl mx-auto">My professional journey so far.</p>
+                </div>
+                <div class="bento-grid bento-grid-experience">
+                    <div class="glass-card p-8 rounded-2xl">
+                        <p class="text-secondary mb-2 text-base md:text-lg">May 2025 - July 2025</p>
+                        <h3 class="text-2xl md:text-3xl font-bold text-primary">Developer Intern</h3>
+                        <p class="text-sky-400 mb-4 text-lg md:text-xl">SSPL, DRDO</p>
+                        <p class="text-secondary text-base md:text-lg">Developed dashboards and custom software solutions to manage research projects, enhance analytics, and streamline internal workflows.
+
+</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl">
+                        <p class="text-secondary mb-2 text-base md:text-lg">May 2025 - July 2025</p>
+                        <h3 class="text-2xl md:text-3xl font-bold text-primary">AI/ML Intern</h3>
+                        <p class="text-sky-400 mb-4 text-lg md:text-xl">Digital Hercules Innovations</p>
+                        <p class="text-secondary text-base md:text-lg">Worked on CreatAIGenie’s Generative AI project, fine-tuning LLMs and leveraging GANs to improve keyword extraction accuracy.
+</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl">
+                        <p class="text-secondary mb-2 text-base md:text-lg">June 2024 - July 2024</p>
+                        <h3 class="text-2xl md:text-3xl font-bold text-primary">ML Analyst Intern</h3>
+                        <p class="text-sky-400 mb-4 text-lg md:text-xl">BharatXR</p>
+                        <p class="text-secondary text-base md:text-lg">Built AI-powered applications and automation tools, covering data processing, visualization, security, and UI/UX design.
+</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br>
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-5xl md:text-6xl font-bold text-primary">Let's Build Together</h2>
+            <p class="text-xl md:text-2xl text-secondary mt-4 max-w-2xl mx-auto">I'm always excited to discuss new projects and opportunities. If you have an idea you'd like to bring to life, let's connect.</p>
+            <div class="mt-12">
+                 <a href="mailto:kanchanrai2307@gmail.com" class="inline-block bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-4 px-10 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-indigo-500/30 text-xl md:text-2xl">
+                Say Hello
+                </a>
+            </div>
+            </div>
+        </section>
+    </main>
+    <br>
+    <br>
+    <!-- Footer -->
+    <footer>
+        <div class="container max-w-7xl mx-auto px-6 py-8">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-6">
+                <p class="text-secondary text-base md:text-1.5xl" >Made with ❤️ by <a href="https://linkedin.com/in/kanchanraiii" target="_blank">Kanchan Rai</a></p>
+                <div class="flex space-x-6">
+                    <a href="https://github.com/kanchanraiii" target="_blank" class="text-secondary hover:text-primary transition-colors"><i data-lucide="github" class="w-7 h-7"></i></a>
+                    <a href="https://linkedin.com/in/kanchanraiii" target="_blank" class="text-secondary hover:text-primary transition-colors"><i data-lucide="linkedin" class="w-7 h-7"></i></a>
+                    <a href="https://x.com/kanchanraiii" target="_blank" class="text-secondary hover:text-primary transition-colors"><i data-lucide="twitter" class="w-7 h-7"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div> <!-- End main-content -->
+
+    <script>
+        // --- LOADING SCREEN ---
+        const funLoadingTexts = [
+            "Preparing something awesome...",
+            "Crafting digital magic...",
+            "Loading creative pixels...",
+            "Brewing fresh ideas...",
+            "Assembling cool stuff...",
+            "Making things beautiful...",
+            "Charging up creativity...",
+            "Almost ready to rock...",
+            "Fine-tuning perfection...",
+            "Just a moment more..."
+        ];
+
+        let textIndex = 0;
+        let textRotationInterval;
+
+        function rotateLoadingText() {
+            const loadingText = document.getElementById('loading-text');
+            if (loadingText) {
+                loadingText.style.opacity = '0';
+                setTimeout(() => {
+                    textIndex = (textIndex + 1) % funLoadingTexts.length;
+                    loadingText.textContent = funLoadingTexts[textIndex];
+                    loadingText.style.opacity = '1';
+                }, 200);
+            }
+        }
+
+        window.addEventListener('load', () => {
+            const loadingScreen = document.getElementById('loading-screen');
+            const mainContent = document.getElementById('main-content');
+            
+            // Start text rotation
+            textRotationInterval = setInterval(rotateLoadingText, 800);
+            
+            // Minimum loading time for better UX
+            setTimeout(() => {
+                clearInterval(textRotationInterval);
+                loadingScreen.classList.add('hidden');
+                mainContent.classList.add('loaded');
+                
+                // Initialize lucide icons after loading
+                lucide.createIcons();
+                
+                // Start hero animations after loading
+                if (typeof anime !== 'undefined') {
+                    startHeroAnimations();
+                }
+            }, 3500); // 3.5 seconds to show the full loading animation
+        });
+
+        function startHeroAnimations() {
+            const heroTexts = document.querySelectorAll('.hero-text');
+            heroTexts.forEach(text => {
+                text.innerHTML = text.textContent.trim().split(' ').map(word => `<span class="line">${word}</span>`).join(' ');
+                Array.from(text.children).forEach((line, i) => {
+                    line.innerHTML = line.textContent.split('').map(char => `<span class="word">${char}</span>`).join('');
+                });
+            });
+
+            const tl = anime.timeline({
+                easing: 'easeOutExpo',
+                duration: 1000,
+            });
+
+            tl.add({
+                targets: '.hero-text .word',
+                translateY: [100, 0],
+                opacity: [0, 1],
+                delay: anime.stagger(15, { from: 'center' })
+            })
+            .add({
+                targets: '.hero-subtext, .hero-buttons',
+                opacity: [0, 1],
+                translateY: [20, 0],
+                duration: 800
+            }, '-=800');
+        }
+
+        lucide.createIcons();
+
+        // --- THEME TOGGLE ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+
+        // Check for saved theme in localStorage
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+            sunIcon.classList.remove('hidden');
+        } else {
+            document.body.classList.remove('light-mode');
+            moonIcon.classList.remove('hidden');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            sunIcon.classList.toggle('hidden');
+            moonIcon.classList.toggle('hidden');
+
+            // Save the current theme to localStorage
+            if (document.body.classList.contains('light-mode')) {
+                localStorage.setItem('theme', 'light');
+            } else {
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+
+        // --- MOBILE MENU ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuIcon = mobileMenuButton.querySelector('i');
+        
+        let isMenuOpen = false;
+
+        mobileMenuButton.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                // Small delay to ensure the element is rendered before animation
+                setTimeout(() => {
+                    mobileMenu.style.transform = 'translateY(0)';
+                    mobileMenu.style.opacity = '1';
+                    mobileMenu.style.visibility = 'visible';
+                }, 10);
+                mobileMenuIcon.setAttribute('data-lucide', 'x');
+            } else {
+                mobileMenu.style.transform = 'translateY(-10px)';
+                mobileMenu.style.opacity = '0';
+                mobileMenu.style.visibility = 'hidden';
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+                mobileMenuIcon.setAttribute('data-lucide', 'menu');
+            }
+            
+            // Recreate icons to update the icon
+            lucide.createIcons();
+        });
+        
+        const mobileLinks = document.querySelectorAll('#mobile-menu a');
+        mobileLinks.forEach((link, index) => {
+            link.addEventListener('click', () => {
+                // Close menu with animation
+                isMenuOpen = false;
+                mobileMenu.style.transform = 'translateY(-10px)';
+                mobileMenu.style.opacity = '0';
+                mobileMenu.style.visibility = 'hidden';
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+                mobileMenuIcon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            });
+            
+            // Add staggered entrance animation
+            link.style.transitionDelay = `${index * 50}ms`;
+        });
+
+        // --- SCROLLSPY & HEADER ---
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('header nav a');
+        const header = document.getElementById('header');
+        const headerContainer = header.querySelector('.container');
+        const logo = header.querySelector('a');
+        
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+
+        function updateHeader() {
+            const scrollY = window.scrollY;
+            
+            // Add/remove scrolled class for styling
+            if (scrollY > 100) {
+                header.classList.add('header-scrolled');
+                logo.classList.add('logo');
+            } else {
+                header.classList.remove('header-scrolled');
+                logo.classList.remove('logo');
+            }
+            
+            // Keep header always visible - removed auto-hide functionality
+            header.style.transform = 'translateY(0)';
+            
+            lastScrollY = scrollY;
+            ticking = false;
+        }
+
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateHeader);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', () => {
+            // Smooth scrollspy
+            let current = 'home';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 150 && pageYOffset < sectionTop + sectionHeight - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+            
+            requestTick();
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = header.offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // --- TEXT ANIMATION ---
+        // Note: Hero animations are now handled in startHeroAnimations() after loading
+        document.addEventListener('DOMContentLoaded', () => {
+            // Other non-hero animations can go here if needed
+        });
+    </script>
+</body>
+</html>
